@@ -22,9 +22,14 @@ async def get_tvl():
         async with session.get("https://analytics.abracadabra.money/api/statistic/tvl") as r:
             if r.status == 200:
                 js = await r.json()
-                tvl = round(js['tvl'] / 1000000, 1)
-                tvlstring = (f"TVL: ${tvl}M")
-                return tvlstring
+                if js['tvl']<1000000000:
+                    tvl = round(js['tvl'] / 1000000, 1)
+                    tvlstring = (f"TVL: ${tvl}M")
+                    return tvlstring
+                else:
+                    tvl = round(js['tvl'] / 1000000000, 3)
+                    tvlstring = (f"TVL: ${tvl}B")
+                    return tvlstring
 
 @client.event
 async def on_ready():
