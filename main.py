@@ -24,11 +24,11 @@ async def get_tvl():
                 js = await r.json()
                 if js['tvl']<1000000000:
                     tvl = round(js['tvl'] / 1000000, 1)
-                    tvlstring = (f"TVL: ${tvl}M")
+                    tvlstring = (f"Abra-TVL: ${tvl}M")
                     return tvlstring
                 else:
                     tvl = round(js['tvl'] / 1000000000, 3)
-                    tvlstring = (f"TVL: ${tvl}B")
+                    tvlstring = (f"Abra-TVL: ${tvl}B")
                     return tvlstring
 
 @client.event
